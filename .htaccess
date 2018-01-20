@@ -1,0 +1,12 @@
+# Uncomment to serve static content with Flask
+#RewriteCond %{REQUEST_URI} /static/^
+#RewriteCond /home/user/api_subdomain/flaskapp/%{REQUEST_URI} -f
+#RewriteRule ^ flaskapp/$1 [L] 
+
+Options +ExecCGI
+AddHandler fcgid-script .fcgi
+RewriteEngine on
+# The following lines are for FastCGI:
+RewriteCond %{REQUEST_FILENAME} !=/home/user/api_subdomain/flaskapp/application.fcgi
+RewriteRule ^(.*)$ application.fcgi/$1 [QSA,L]
+
